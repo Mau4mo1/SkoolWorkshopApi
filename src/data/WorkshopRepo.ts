@@ -1,24 +1,26 @@
-import { Connection, createConnection } from 'typeorm';
+import { Connection } from 'typeorm';
 import Workshop from '../models/Workshop';
 import CrudRepo from './CrudRepo';
+import Repo from './Repo';
 
-export default class WorkshopRepo implements CrudRepo<Workshop> {
-
-	create(body: Workshop): Promise<Workshop[]> {
-		throw new Error('Method not implemented.');
-	}
-	getById(id: number): Promise<Workshop[]> {
-		throw new Error('Method not implemented.');
-	}
+export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
 	async getAll(): Promise<Workshop[]> {
-		let connection: Connection = await createConnection();
-		return connection.getRepository(Workshop).find();
+		return this.execute((connection: Connection) => connection.getRepository(Workshop).find());
 	}
-	update(id: number): Promise<Workshop[]> {
-		throw new Error('Method not implemented.');
+
+	async getById(id: number): Promise<Workshop> {
+		return this.execute((connection: Connection) => connection.getRepository(Workshop).findOne(id));
 	}
-	delete(id: number): Promise<Workshop[]> {
+
+	async create(object: Workshop): Promise<Workshop[]> {
 		throw new Error('Method not implemented.');
 	}
 
+	async update(id: number, object: Workshop): Promise<Workshop[]> {
+		throw new Error('Method not implemented.');
+	}
+
+	async delete(id: number): Promise<Workshop[]> {
+		throw new Error('Method not implemented.');
+	}
 }
