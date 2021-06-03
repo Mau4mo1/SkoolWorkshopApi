@@ -4,38 +4,35 @@ import WorkshopRepo from '../data/WorkshopRepo';
 import { Connection, createConnection } from 'typeorm';
 
 var logger = require('tracer').console();
-
+const workshopRepo = new WorkshopRepo();
 export default class WorkshopController implements CrudController<Workshop> {
 	create(req: Request, res: Response, next: any): void {
 		throw new Error('Method not implemented.');
 	}
-	getById(req: any, res: any, next: any): void {
+	async getById(req: any, res: any, next: any): Promise<void> {
+		const result = await workshopRepo.getById(req.params.work);
+
+		if (result != undefined) {
+			res.status(200).json({
+				result: result,
+			});
+		} else {
+			res.status(500).json({
+				result: 'Nothing found',
+			});
+		}
+	}
+
+	getAll(req: any, res: any, next: any): void {
 		createConnection()
 			.then(async (connection) => {
-				console.log(req.params.workshopId);
-
-				let workshop = await connection.getRepository(Workshop).findOne(req.params.workshopId)
+				let workshops = await connection.manager.find(Workshop);
 				await connection.close();
-				console.log(workshop);
-				
 				res.status(200).json({
-					result: workshop,
+					result: workshops,
 				});
 			})
 			.catch((error) => console.log(error));
-	}
-	
-	getAll(req: any, res: any, next: any): void {
-		createConnection()
-		.then(async (connection) => {
-
-			let workshops = await connection.manager.find(Workshop);
-			await connection.close();
-			res.status(200).json({
-				result: workshops,
-			});
-		})
-		.catch((error) => console.log(error));
 	}
 
 	update(req: Request, res: Response, next: any): void {
