@@ -1,11 +1,15 @@
-export default interface CrudInterface<Type> {
-	create(body : Type): Type;
 
-	getById(id : number): Type;
+import { Connection, createConnection, getConnection, getConnectionManager } from "typeorm";
+import { createEmptyStatement } from "typescript";
 
-	getAll(): Type;
+export default interface CrudInterface<T> {
+	create(body : T): Promise<T[]>;
 
-	update(id : number): Type;
+	getById(id : number): Promise<T[]>;
 
-	delete(id : number): Type;
+	getAll(): Promise<T[]>;
+
+	update(id : number): Promise<T[]>;
+
+	delete(id : number): Promise<T[]>;
 }
