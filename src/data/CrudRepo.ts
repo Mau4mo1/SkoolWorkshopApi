@@ -1,11 +1,7 @@
-export default interface CrudInterface<Type> {
-	create(body : Type): Type;
-
-	getById(id : number): Type;
-
-	getAll(): Type;
-
-	update(id : number): Type;
-
-	delete(id : number): Type;
+export default interface CrudRepo<T> {
+	getAll(): Promise<T[]>;
+	getById(id: number): Promise<T>;
+	create(object: T): void;
+	update(id: number, object: T): void;
+	delete(id: number): void;
 }
