@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 export default class Workshop {
 
 	@PrimaryGeneratedColumn()
-    id: number;
+    Id: number;
 
     @Column()
     Category: string;

@@ -5,7 +5,7 @@
 	"username": "Skool1",
 	"password": "Skool1Luuk432?",
 	"database": "db816606761",
-	"logging": false,
+	"logging": true,
 	"entities": [
 	   "src/models/**/*.ts"
 	],
