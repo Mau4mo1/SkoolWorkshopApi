@@ -1,14 +1,14 @@
 import express from 'express';
-// import Registration from '../controllers/'
+import RegistrationController from '../controllers/RegistrationController'
 
 const router = express.Router();
-
+const registrationController = new RegistrationController();
 // getAll
-router.get('/');
+router.get('/',registrationController.getAll);
 // getById
-router.get('/:registrationId');
+router.get('/:registrationId',registrationController.getById);
 // get round from a registration by roundId and registrationId
-router.get('/:registrationId/round/:roundId');
+router.get('/:registrationId/round/:roundId',);
 // get all rounds from registrationId
 router.get('/:registrationId/round');
 
