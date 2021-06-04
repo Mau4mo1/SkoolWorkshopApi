@@ -1,20 +1,23 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export default class Workshop {
+export default class Participant {
 
 	@PrimaryGeneratedColumn()
     Id: number;
 
     @Column()
-    Category: string;
+    UId: string;
 
     @Column()
-    CodeName: string;
+    FirstName: string;
 
     @Column()
-    ShortDesc: string;
+    LastName: string;
     
     @Column()
-    NeedsApp: string;
+    EMail: string;
+
+    @Column()
+    TeamId: number;
 }
