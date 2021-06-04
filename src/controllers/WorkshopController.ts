@@ -23,16 +23,18 @@ export default class WorkshopController implements CrudController<Workshop> {
 		}
 	}
 
-	getAll(req: any, res: any, next: any): void {
-		createConnection()
-			.then(async (connection) => {
-				let workshops = await connection.manager.find(Workshop);
-				await connection.close();
-				res.status(200).json({
-					result: workshops,
-				});
-			})
-			.catch((error) => console.log(error));
+	async getAll(req: any, res: any, next: any): Promise<void> {
+		const result = await workshopRepo.getAll();
+
+		if (result != undefined) {
+			res.status(200).json({
+				result: result,
+			});
+		} else {
+			res.status(500).json({
+				result: 'Nothing found',
+			});
+		}
 	}
 
 	update(req: Request, res: Response, next: any): void {
