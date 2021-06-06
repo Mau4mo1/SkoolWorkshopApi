@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export default class Picture {
-
 	@PrimaryGeneratedColumn()
     Id: number;
 
@@ -20,4 +19,7 @@ export default class Picture {
 
     @Column()
     ThumbNail: string;
+
+    @Column()
+    ThumbNailName: string;
 }
