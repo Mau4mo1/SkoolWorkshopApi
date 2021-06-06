@@ -1,20 +1,9 @@
-import Picture from '../models/Picture';
 import CrudController from './CrudController';
-import { Connection, createConnection } from 'typeorm';
 import PictureRepo from '../data/PictureRepo';
-//import RegistrationRepo from '../data/RegistrationRepo';
 
-var logger = require('tracer').console();
-// implement the repo from the data
 const pictureRepo = new PictureRepo();
 
-export default class PictureController implements CrudController<Picture> {
-    create(req: Request, res: Response, next: any): void {
-        throw new Error('Method not implemented.');
-    }
-    getById(req: Request, res: Response, next: any): void {
-        throw new Error('Method not implemented.');
-    }
+export default class PictureController implements CrudController {
     async getAll(req: any, res: any, next: any): Promise<void> {
         const result = await pictureRepo.getAll();
 
@@ -28,10 +17,19 @@ export default class PictureController implements CrudController<Picture> {
 			});
 		}
     }
-    update(req: Request, res: Response, next: any): void {
+
+    async getById(req: Request, res: Response, next: any): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    delete(req: Request, res: Response, next: any): void {
+
+    async create(req: Request, res: Response, next: any): Promise<void> {
+        throw new Error('Method not implemented.');
+    }
+
+    async update(req: Request, res: Response, next: any): Promise<void> {
+        throw new Error('Method not implemented.');
+    }
+    async delete(req: Request, res: Response, next: any): Promise<void> {
         throw new Error('Method not implemented.');
     }
 
