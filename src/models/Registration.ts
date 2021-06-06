@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export default class Registration {
-
 	@PrimaryGeneratedColumn()
     id: number;
 
@@ -43,9 +42,8 @@ export default class Registration {
     Active: number;
 
     @Column()
-    ShortDesc: String;
+    ShortDesc: string;
 
     @Column()
     CompanyId: number;
-    
 }

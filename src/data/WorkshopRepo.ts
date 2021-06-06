@@ -12,15 +12,15 @@ export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
 		return this.execute((connection: Connection) => connection.getRepository(Workshop).findOne(id));
 	}
 
-	async create(object: Workshop): Promise<Workshop[]> {
+	async create(object: Workshop): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
 
-	async update(id: number, object: Workshop): Promise<Workshop[]> {
+	async update(id: number, object: Workshop): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
 
-	async delete(id: number): Promise<Workshop[]> {
+	async delete(id: number): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
 }
