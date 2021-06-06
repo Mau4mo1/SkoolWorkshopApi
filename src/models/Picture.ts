@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany } from "typeorm";
+import Workshop from "./Workshop";
 
 @Entity()
 export default class Picture {
@@ -22,4 +23,8 @@ export default class Picture {
 
     @Column()
     ThumbNailName: string;
+
+    @ManyToMany(() => Workshop, workshop => workshop.Pictures)
+    @JoinTable()
+    Workshops: Promise<Workshop[]>;
 }
