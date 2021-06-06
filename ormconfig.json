@@ -1,15 +1,18 @@
-{
-	"type": "mssql",
-	"host": "r320.concor.me",
-	"port": 14330,
-	"username": "Skool1",
-	"password": "Skool1Luuk432?",
-	"database": "db816606761",
-	"logging": true,
-	"entities": [
-	   "src/models/**/*.ts"
-	],
-	"cli": {
-	   "entitiesDir": "src/models"
+[
+	{
+		"name": "default",
+		"type": "mssql",
+		"host": "r320.concor.me",
+		"port": 14330,
+		"username": "Skool1",
+		"password": "Skool1Luuk432?",
+		"database": "db816606761",
+		"logging": true,
+		"entities": [
+			"dist/models/**/*.js"
+		],
+		"cli": {
+			"entitiesDir": "dist/models"
+		}
 	}
- }
+]

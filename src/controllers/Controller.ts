@@ -1,5 +1,4 @@
 export default class Controller{
-
     response(res: any, result: any) : any{
         if (result != undefined) {
 			res.status(200).json({
