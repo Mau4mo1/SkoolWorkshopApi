@@ -1,11 +1,11 @@
-import { Connection } from 'typeorm';
+import { getRepository } from 'typeorm';
 import Picture from '../models/Picture';
 import CrudRepo from './CrudRepo';
 import Repo from './Repo';
 
 export default class PictureRepo extends Repo implements CrudRepo<Picture> {
     async getAll(): Promise<Picture[]> {
-        return this.execute((connection: Connection) => connection.getRepository(Picture).find());
+        return this.execute(() => getRepository(Picture).find());
     }
 
     async getById(id: number): Promise<Picture> {
