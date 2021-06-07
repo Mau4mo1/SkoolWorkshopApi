@@ -3,10 +3,10 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import router from './routes/indexRoutes';
-import WorkshopRepo from './data/WorkshopRepo';
+import { createConnection, getConnectionOptions } from 'typeorm';
+import NamingStrategy from './data/NamingStrategy';
 
 const app = express();
-const workshopRepo = new WorkshopRepo();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -16,12 +16,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 
-// Test
-const test = async () => {
-    console.log('Get all Workshops: \n', await workshopRepo.getAll());
-    console.log('Get one Workshop: \n', await workshopRepo.getById(14));
+const connect = async () => {
+    // Get TypeORM config from .json file
+    let connectionOptions = await getConnectionOptions();
+
+    // Add custom TypeORM Naming Strategy to config
+    Object.assign(connectionOptions, { namingStrategy: new NamingStrategy() });
+
+    // Create connection with config
+    await createConnection(connectionOptions);
 }
 
-test();
+const startup = async () => {
+    console.log('🚀 Starting server!');
+    await connect();
+}
+
+startup();
 
 export default app;

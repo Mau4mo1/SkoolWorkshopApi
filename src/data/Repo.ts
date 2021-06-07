@@ -1,23 +1,19 @@
-import { Connection, createConnection, ConnectionOptions, getConnectionOptions } from "typeorm";
+import { Connection, createConnection, getConnection, getConnectionOptions } from "typeorm";
 import NamingStrategy from "./NamingStrategy";
 
 export default class Repo {
+	static async connect() {
+		let connectionOptions = await getConnectionOptions();
+		Object.assign(connectionOptions, { namingStrategy: new NamingStrategy() });
+	
+		await createConnection(connectionOptions);
+	}
+
     async execute(callback: (connection: Connection) => Promise<any>): Promise<any> {
-        let connection: Connection;
-		let connectionOptions: ConnectionOptions;
-
 		try {
-			connectionOptions = await getConnectionOptions();
-
-			Object.assign(connectionOptions, { namingStrategy: new NamingStrategy() });
-			
-			connection = await createConnection(connectionOptions);
-
-            return await callback(connection);
+			return await callback(getConnection());
 		} catch (error) {
 			console.log(error);
-		} finally {
-			await connection.close();
 		}
     }
 }
