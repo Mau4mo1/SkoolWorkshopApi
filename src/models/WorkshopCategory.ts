@@ -1,8 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export default class WorkshopCategory {
-    @Column()
+    @PrimaryColumn()
     Category: string;
-
 }
