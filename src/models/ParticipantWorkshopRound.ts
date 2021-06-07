@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class PictureRubric {
+export default class ParticipantWorkshopRound {
 	@PrimaryGeneratedColumn()
 	Id: number;
 
