@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export default class ParticipantWorkshopRound {
-	@PrimaryGeneratedColumn()
+export default class PictureRubric {
+	@PrimaryColumn()
 	Rubric: string;
 }

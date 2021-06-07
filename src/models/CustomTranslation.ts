@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
-export default class Company {
+export default class CustomTranslation {
 	@PrimaryGeneratedColumn()
     Id: number;
 
@@ -13,5 +13,4 @@ export default class Company {
 
     @Column()
     Translation: string;
-
 }
