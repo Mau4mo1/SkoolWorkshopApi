@@ -6,6 +6,6 @@ const pictureController = new PictureController();
 const router = express.Router();
 
 router.get('/', pictureController.getAll);
-router.get('/:id');
+router.get('/:pictureId', pictureController.getById);
 
 export default router;

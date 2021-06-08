@@ -25,4 +25,9 @@ export default class WorkshopController extends Controller implements CrudContro
 	async delete(request: Request, response: Response, next: NextFunction): Promise<void> {
 		throw new Error('Method not implemented.');
 	}
+
+	async getPictures(request: Request, response: Response, next: NextFunction): Promise<void> {
+		let workshop = await workshopRepo.getById(parseInt(request.params.workshopId));
+		super.respond(response, await workshop.Pictures);
+	}
 }
