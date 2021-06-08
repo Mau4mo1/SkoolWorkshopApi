@@ -1,9 +1,11 @@
+import CustomTranslation from '../models/CustomTranslation';
 import { getRepository } from 'typeorm';
 import Workshop from '../models/Workshop';
 import CrudRepo from './CrudRepo';
 import Repo from './Repo';
 
 export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
+	// TODO:: Fix, 🍕
 	async getAll(): Promise<Workshop[]> {
 		return this.execute(() => getRepository(Workshop).find());
 	}
@@ -22,5 +24,14 @@ export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
 
 	async delete(id: number): Promise<void> {
 		throw new Error('Method not implemented.');
+	}
+
+	async getTranslation(id: number): Promise<void>{
+		return this.execute(() => getRepository(CustomTranslation)
+		.query("SELECT Translation, Culture "+
+		" FROM Workshop" + 
+		" INNER JOIN CustomTranslation "+
+		" ON CustomTranslation.ShortDesc = Workshop.ShortDesc "+
+		" WHERE Workshop.Id = " + id));
 	}
 }
