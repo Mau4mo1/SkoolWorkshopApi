@@ -6,6 +6,11 @@ import Controller from './Controller';
 const pictureRepo = new PictureRepo();
 
 export default class PictureController extends Controller implements CrudController {
+
+    async validation(request: Request, response: Response, next: NextFunction) : Promise<void> {
+        
+	}
+
     async getAll(request: Request, response: Response, next: NextFunction): Promise<void> {
         super.respond(response, await pictureRepo.getAll());
     }
