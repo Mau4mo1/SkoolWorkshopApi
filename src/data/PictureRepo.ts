@@ -9,7 +9,7 @@ export default class PictureRepo extends Repo implements CrudRepo<Picture> {
     }
 
     async getById(id: number): Promise<Picture> {
-        throw new Error('Method not implemented.');
+        return this.execute(() => getRepository(Picture).findOne(id));
     }
 
     async create(object: Picture): Promise<void> {

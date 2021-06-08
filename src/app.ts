@@ -3,8 +3,9 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import router from './routes/indexRoutes';
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { createConnection, getConnectionOptions, getRepository } from 'typeorm';
 import NamingStrategy from './data/NamingStrategy';
+import Team from './models/Team';
 
 const app = express();
 
@@ -13,8 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/api', router);
 
 const connect = async () => {
     // Get TypeORM config from .json file
@@ -30,6 +29,8 @@ const connect = async () => {
 const startup = async () => {
     console.log('🚀 Starting server!');
     await connect();
+
+    app.use('/api', router);
 }
 
 startup();
