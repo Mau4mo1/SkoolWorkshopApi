@@ -30,7 +30,7 @@ const startup = async () => {
     console.log('🚀 Starting server!');
     await connect();
 
-    app.use('/api', router);
+    app.use('/api/v1', router);
 }
 
 startup();
