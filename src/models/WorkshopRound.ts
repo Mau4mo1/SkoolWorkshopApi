@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import TeamWorkshopRound from "./TeamWorkshopRound";
 
 @Entity()
 export default class WorkshopRound {
@@ -25,4 +26,7 @@ export default class WorkshopRound {
 
     @Column()
     RoundId: number;
+
+    @OneToMany(() => TeamWorkshopRound, teamWorkshopRound => teamWorkshopRound.WorkshopRound)
+    TeamWorkshopRounds: Promise<TeamWorkshopRound[]>
 }
