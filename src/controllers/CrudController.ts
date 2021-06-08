@@ -1,7 +1,9 @@
+import { Request, Response, NextFunction } from 'express';
+
 export default interface CrudController {
-	getAll(req: Request, res: Response, next: any): Promise<void>;
-	getById(req: Request, res: Response, next: any): Promise<void>;
-	create(req: Request, res: Response, next: any): Promise<void>;
-	update(req: Request, res: Response, next: any): Promise<void>;
-	delete(req: Request, res: Response, next: any): Promise<void>;
+	getAll(request: Request, response: Response, next: NextFunction): Promise<void>;
+	getById(request: Request, response: Response, next: NextFunction): Promise<void>;
+	create(request: Request, response: Response, next: NextFunction): Promise<void>;
+	update(request: Request, response: Response, next: NextFunction): Promise<void>;
+	delete(request: Request, response: Response, next: NextFunction): Promise<void>;
 }

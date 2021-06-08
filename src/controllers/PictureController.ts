@@ -1,35 +1,28 @@
+import { Request, Response, NextFunction } from 'express';
 import CrudController from './CrudController';
 import PictureRepo from '../data/PictureRepo';
+import Controller from './Controller';
 
 const pictureRepo = new PictureRepo();
 
-export default class PictureController implements CrudController {
-    async getAll(req: any, res: any, next: any): Promise<void> {
-        const result = await pictureRepo.getAll();
-
-		if (result != undefined) {
-			res.status(200).json({
-				result: result,
-			});
-		} else {
-			res.status(500).json({
-				result: 'Nothing found',
-			});
-		}
+export default class PictureController extends Controller implements CrudController {
+    async getAll(request: Request, response: Response, next: NextFunction): Promise<void> {
+        super.respond(response, await pictureRepo.getAll());
     }
 
-    async getById(req: Request, res: Response, next: any): Promise<void> {
+    async getById(request: Request, response: Response, next: NextFunction): Promise<void> {
+        super.respond(response, await pictureRepo.getById(parseInt(request.params.pictureId)));
+    }
+
+    async create(request: Request, response: Response, next: NextFunction): Promise<void> {
         throw new Error('Method not implemented.');
     }
 
-    async create(req: Request, res: Response, next: any): Promise<void> {
+    async update(request: Request, response: Response, next: NextFunction): Promise<void> {
         throw new Error('Method not implemented.');
     }
-
-    async update(req: Request, res: Response, next: any): Promise<void> {
-        throw new Error('Method not implemented.');
-    }
-    async delete(req: Request, res: Response, next: any): Promise<void> {
+	
+    async delete(request: Request, response: Response, next: NextFunction): Promise<void> {
         throw new Error('Method not implemented.');
     }
 
