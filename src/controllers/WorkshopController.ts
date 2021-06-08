@@ -37,4 +37,8 @@ export default class WorkshopController extends Controller implements CrudContro
 		let workshop = await workshopRepo.getById(parseInt(request.params.workshopId));
 		super.respond(response, await workshop.Pictures);
 	}
+
+	async getTranslations(request: Request, response: Response,next: NextFunction): Promise<void>{
+		super.respond(response,await workshopRepo.getTranslation(parseInt(request.params.workshopId)))
+	}
 }
