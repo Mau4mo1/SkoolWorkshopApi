@@ -18,7 +18,9 @@ export default class Workshop {
     @Column()
     NeedsApp: string;
 
-    @ManyToMany(() => Picture, picture => picture.Workshops)
+    @ManyToMany(() => Picture, picture => picture.Workshops,{
+        eager: true
+    })
     @JoinTable()
     Pictures: Promise<Picture[]>;
 }
