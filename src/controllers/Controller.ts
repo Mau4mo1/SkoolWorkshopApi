@@ -1,8 +1,4 @@
-import { Console } from 'console';
 import { Response } from 'express';
-import { nextTick } from 'process';
-import { consoleTestResultHandler } from 'tslint/lib/test';
-import { isNumber } from 'util';
 
 export default class Controller {
     async respond(response: Response, result: any): Promise<void> {
