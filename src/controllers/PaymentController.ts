@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import CrudController from './CrudController';
-import { createMollieClient, SequenceType, PaymentMethod } from '@mollie/api-client';
+import { createMollieClient, SequenceType, PaymentMethod, PaymentStatus } from '@mollie/api-client';
 import Controller from './Controller';
 
 const mollieClient = createMollieClient({ apiKey: 'test_W3pnKvRm2cGtzQUdzEhnCVWWEMG7p5' });
@@ -13,19 +13,19 @@ export default class PaymentController extends Controller {
 	async getById(request: Request, response: Response, next: NextFunction): Promise<void>{
         mollieClient.payments.get(request.body.id)
         .then(payment => {
-            if(payment.isPaid){
+            if(payment == PaymentStatus.paid){
                 response.status(200).json("Da hedde goed gedaan kut");
                 console.log("Je hebt nooit geen geld boef");
             }
-            if(payment.isCanceled){
+            if(payment == PaymentStatus.canceled){
                 response.status(401).json("Gecanceled");
                 console.log("Gecanceled net als maurice");
             }
-            if(payment.isFailed){
+            if(payment== PaymentStatus.failed){
                 response.status(401).json("Gefaald");
                 console.log("Gefaald net als je leven");
             }
-            if(payment.isExpired){
+            if(payment== PaymentStatus.expired){
                 response.status(401).json("te laat");
                 console.log("Ge hebt de bus gemist kut");
             }
