@@ -36,7 +36,7 @@ export default class PaymentController extends Controller {
             
             description: request.body.description,
             redirectUrl: "https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-fetch-api-to-get-data",
-            webhookUrl: "http://127.0.0.1:3000/api/v1/payment/"
+            webhookUrl: "https://skool-workshop.herokuapp.com/api/v1/payment/"
           })
             .then(payment => {
                 if(payment.isOpen()){
