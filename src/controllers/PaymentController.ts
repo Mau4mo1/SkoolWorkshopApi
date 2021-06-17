@@ -15,6 +15,19 @@ export default class PaymentController extends Controller {
         .then(payment => {
             if(payment.isPaid){
                 response.status(200).json("Da hedde goed gedaan kut");
+                console.log("Je hebt nooit geen geld boef");
+            }
+            if(payment.isCanceled){
+                response.status(401).json("Gecanceled");
+                console.log("Gecanceled net als maurice");
+            }
+            if(payment.isFailed){
+                response.status(401).json("Gefaald");
+                console.log("Gefaald net als je leven");
+            }
+            if(payment.isExpired){
+                response.status(401).json("te laat");
+                console.log("Ge hebt de bus gemist kut");
             }
           // E.g. check if the payment.isPaid()
 
