@@ -13,7 +13,15 @@ export default class RegistrationRepo extends Repo implements CrudRepo<Registrat
     }
 
     async create(object: Registration): Promise<void> {
-        throw new Error('Method not implemented.');
+        this.execute(() => getRepository(Registration)
+            .createQueryBuilder()
+            .insert()
+            .into(Registration)
+            .values([
+                object
+            ]).execute()
+        );
+        return;
     }
 
     async update(id: number, object: Registration): Promise<void> {

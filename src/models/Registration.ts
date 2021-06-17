@@ -24,16 +24,19 @@ export default class Registration {
     RoundMax: number;
 
     @Column()
-    StartDate: string;
+    StartDate: Date;
 
     @Column()
-    EndDate: string;
+    EndDate: Date;
 
     @Column()
-    StartDateRegistration: string;
+    StartDateRegistration: Date;
 
     @Column()
-    EndDateDownload: string;
+    EndDateRegistration: Date;
+
+    @Column()
+    EndDateDownload: Date;
 
     @Column()
     AccessCode: string;
