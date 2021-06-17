@@ -15,22 +15,22 @@ export default class PaymentController extends Controller {
         .then(payment => {
             console.log(payment)
             response.status(200);
-            // if(payment == PaymentStatus.paid){
-            //     response.status(200).json("Da hedde goed gedaan kut");
-            //     console.log("Je hebt nooit geen geld boef");
-            // }
-            // if(payment == PaymentStatus.canceled){
-            //     response.status(401).json("Gecanceled");
-            //     console.log("Gecanceled net als maurice");
-            // }
-            // if(payment== PaymentStatus.failed){
-            //     response.status(401).json("Gefaald");
-            //     console.log("Gefaald net als je leven");
-            // }
-            // if(payment== PaymentStatus.expired){
-            //     response.status(401).json("te laat");
-            //     console.log("Ge hebt de bus gemist kut");
-            // }
+            if(payment.status == PaymentStatus.paid){
+                response.status(200).json("Da hedde goed gedaan kut");
+                console.log("Je hebt nooit geen geld boef");
+            }
+            if(payment.status == PaymentStatus.canceled){
+                response.status(401).json("Gecanceled");
+                console.log("Gecanceled net als maurice");
+            }
+            if(payment.status == PaymentStatus.failed){
+                response.status(401).json("Gefaald");
+                console.log("Gefaald net als je leven");
+            }
+            if(payment.status == PaymentStatus.expired){
+                response.status(401).json("te laat");
+                console.log("Ge hebt de bus gemist kut");
+            }
           // E.g. check if the payment.isPaid()
 
         })
