@@ -8,7 +8,7 @@ import NamingStrategy from './data/NamingStrategy';
 
 const startup = async () => {
     // Get TypeORM config from .json file
-    const connectionOptions = await getConnectionOptions('develop');
+    const connectionOptions = await getConnectionOptions();
 
     // Add custom TypeORM Naming Strategy to config
     Object.assign(connectionOptions, { 
