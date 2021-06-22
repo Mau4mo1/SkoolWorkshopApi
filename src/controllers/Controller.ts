@@ -35,7 +35,5 @@ export default class Controller {
 				error: 'Doe ff normale input joh'
 			});
 		}
-		return;
 	}
-	
 }

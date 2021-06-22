@@ -26,13 +26,14 @@ export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
 		throw new Error('Method not implemented.');
 	}
 
-	async getTranslation(id: number): Promise<void>{
+	async getTranslation(id: number): Promise<void> {
 		return this.execute(() => getRepository(CustomTranslation)
-		.query("SELECT Translation, Culture "+
-		" FROM Workshop" + 
-		" INNER JOIN CustomTranslation "+
-		" ON CustomTranslation.ShortDesc = Workshop.ShortDesc "+
-		" WHERE Workshop.Id = " + id));
+			.query(
+				`SELECT Translation, Culture FROM Workshop 
+				INNER JOIN CustomTranslation ON CustomTranslation.ShortDesc = Workshop.ShortDesc 
+				WHERE Workshop.Id = ${id}`
+			)
+		);
 	}
 
 	async getPopular(): Promise<Workshop[]> {

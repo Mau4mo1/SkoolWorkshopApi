@@ -17,11 +17,9 @@ export default class RegistrationRepo extends Repo implements CrudRepo<Registrat
             .createQueryBuilder()
             .insert()
             .into(Registration)
-            .values([
-                object
-            ]).execute()
+            .values([ object ])
+            .execute()
         );
-        return;
     }
 
     async update(id: number, object: Registration): Promise<void> {

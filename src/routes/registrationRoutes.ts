@@ -10,5 +10,5 @@ router.get('/:registrationId', registrationController.getById);
 router.get('/:registrationId/round/:roundId',);
 router.get('/:registrationId/round');
 router.post('/create',registrationController.create);
-export default router;
 
+export default router;
