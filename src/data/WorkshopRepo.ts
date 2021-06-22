@@ -34,4 +34,25 @@ export default class WorkshopRepo extends Repo implements CrudRepo<Workshop> {
 		" ON CustomTranslation.ShortDesc = Workshop.ShortDesc "+
 		" WHERE Workshop.Id = " + id));
 	}
+
+	async getPopular(): Promise<Workshop[]> {
+		const workshops = this.execute(() => getRepository(Workshop)
+			.query(
+				`SELECT Workshop.Id
+				FROM WorkshopRound 
+				INNER JOIN Workshop 
+				ON Workshop.Id = WorkshopRound.WorkshopId 
+				GROUP BY Workshop.Id
+				ORDER BY COUNT(WorkshopRound.Id) DESC`
+			)
+		);
+
+		const results: Workshop[] = [];
+
+		for(let workshop of await workshops) {
+			results.push(await this.getById(workshop.Id));
+		}
+
+		return results;
+	}
 }

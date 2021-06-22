@@ -42,4 +42,8 @@ export default class WorkshopController extends Controller implements CrudContro
 	async getTranslations(request: Request, response: Response,next: NextFunction): Promise<void>{
 		super.respond(response,await workshopRepo.getTranslation(parseInt(request.params.workshopId)))
 	}
+
+	async getPopular(request: Request, response: Response, next: NextFunction): Promise<void> {
+		super.respond(response, await workshopRepo.getPopular());
+	}
 }
