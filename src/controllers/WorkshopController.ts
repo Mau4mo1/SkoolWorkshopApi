@@ -7,7 +7,7 @@ const workshopRepo = new WorkshopRepo();
 
 export default class WorkshopController extends Controller implements CrudController {
 
-	async validation(request: Request, response: Response, next: NextFunction) : Promise<void> {
+	validation(request: Request, response: Response, next: NextFunction) : void {
 		super.validateId(response,request.params.workshopId);
 		next();
 	}
@@ -26,6 +26,7 @@ export default class WorkshopController extends Controller implements CrudContro
 	}
 
 	async update(request: Request, response: Response, next: NextFunction): Promise<void> {
+		
 		throw new Error('Method not implemented.');
 	}
 
@@ -38,7 +39,11 @@ export default class WorkshopController extends Controller implements CrudContro
 		super.respond(response, await workshop.Pictures);
 	}
 
-	async getTranslations(request: Request, response: Response,next: NextFunction): Promise<void>{
+	async getTranslations(request: Request, response: Response, next: NextFunction): Promise<void> {
 		super.respond(response,await workshopRepo.getTranslation(parseInt(request.params.workshopId)))
+	}
+
+	async getPopular(request: Request, response: Response, next: NextFunction): Promise<void> {
+		super.respond(response, await workshopRepo.getPopular());
 	}
 }

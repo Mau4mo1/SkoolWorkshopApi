@@ -29,9 +29,7 @@ export default class WorkshopCategoryController extends Controller implements Cr
     	throw new Error('Method not implemented.');
   	}
     
-    async getWorkshopsByCategory(request: Request, response: Response, next: NextFunction): Promise<void> {
-        
-        super.respond(response, await categoryRepo.getWorkshopsByCategory(request.query.category.toString()));
+    async getByCategory(request: Request, response: Response, next: NextFunction): Promise<void> {
+        super.respond(response, await categoryRepo.getByCategory(request.query.category.toString()));
   	}
-
 }

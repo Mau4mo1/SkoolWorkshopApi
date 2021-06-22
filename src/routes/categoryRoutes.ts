@@ -6,6 +6,6 @@ const router = express.Router();
 const workshopCategoryController = new WorkshopCategoryController();
 
 router.get('/', workshopCategoryController.getAll);
-router.get('/workshops', workshopCategoryController.getWorkshopsByCategory);
+router.get('/workshops', workshopCategoryController.getByCategory);
 
 export default router;

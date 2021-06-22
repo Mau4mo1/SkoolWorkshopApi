@@ -1,11 +1,8 @@
-import { Console } from 'console';
 import { Response } from 'express';
-import { nextTick } from 'process';
-import { consoleTestResultHandler } from 'tslint/lib/test';
-import { isNumber } from 'util';
 
 export default class Controller {
     async respond(response: Response, result: any): Promise<void> {
+		console.log(result);
         if (result != undefined) {
 			response.status(200).json({result});
 		} else {
@@ -15,7 +12,13 @@ export default class Controller {
 		}
     }
 
-	async validateId(response: Response,id: any): Promise<void> {
+	async mutation(response: Response,temp: any): Promise<void>{
+		response.status(200).json({
+			message: "Succes :)"
+		});
+	}
+
+	validateId(response: Response,id: any): void {
 		try {
 			console.log('Trying  validation');
 
@@ -23,7 +26,7 @@ export default class Controller {
     		// Don't allow NaN and stuff.
     		if (!Number.isFinite(num)) {
 				console.log(num);
-				throw new Error("NAN!");
+				throw new Error("NaN!");
 			}
 		} catch (error) {
 			console.log('Failing validation');
@@ -32,7 +35,5 @@ export default class Controller {
 				error: 'Doe ff normale input joh'
 			});
 		}
-		return;
 	}
-	
 }
